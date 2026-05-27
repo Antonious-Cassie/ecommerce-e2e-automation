@@ -62,15 +62,5 @@ public class AddToCartTest {
  
 
 
-	// Issues overcame: 
-			
-	//1.i struggled with the iframe because it was a nested iframe. i thought the close button was in the inner iframe, i viewd the image again and saw it was on the outer iframe.
-	
-	// 2. BUT the advertisement iframe was physically sitting on top of the button. So the ad received the click instead
-	 
-	//To overcome this i used scroll to move the iframe position. 
-	
-	//3. an ad i frame poped up and blocked the click of an option. I overcame this by adding scroll. 
-	
-	//4. adding waits for assertions 
+
 	 		
