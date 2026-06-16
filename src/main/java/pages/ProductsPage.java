@@ -16,7 +16,6 @@ public class ProductsPage {
 	Actions act;
 	WebDriverWait wait;
 	
-	//Locators 
 	
 	By productPage = By.xpath("//a[@href='/products']");
 	By iframe1 = By.id("aswift_3");
@@ -77,6 +76,23 @@ public class ProductsPage {
 		Assert.assertEquals(actualUrl, expectedUrl); 
 		
 		Assert.assertEquals(wait.until(ExpectedConditions.visibilityOfElementLocated(quantity)).getText(),"1");
+	}
+	
+	public void removeItemFromCart() {
+		
+		driver.findElement(By.className("cart_quantity_delete")).click();
+		
+	}
+	
+	public String getEmptyCartMessage() {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
+		
+		
+		WebElement emptyCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("empty_cart")));
+		
+		return emptyCart.getText();
+		
 	}
 	
 			
