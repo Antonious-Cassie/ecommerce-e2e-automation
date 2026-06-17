@@ -17,6 +17,7 @@ public class LoginPage {
 	By emailInputLocator = By.xpath("//input[@type='email']");
 	By passwordInputLocator = By.xpath("//input[@type='password']"); 
 	By loginBtnLocator = By.xpath("//button[text()='Login']"); 
+	By errorMessageLocator = By.xpath("//p[text()='Your email or password is incorrect!']");
 	
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -42,6 +43,10 @@ public class LoginPage {
 	public void clickLoginButton() {
 		driver.findElement(loginBtnLocator).click();	
 		}
+	
+	public boolean isErrorMessageDisplayed() {
+	    return driver.findElement(errorMessageLocator).isDisplayed();
+	}
 	
 	public void executeLogin( String email, String password) {
 		clickConsent();
