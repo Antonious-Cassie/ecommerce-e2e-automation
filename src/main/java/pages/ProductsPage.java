@@ -36,9 +36,13 @@ public class ProductsPage {
 	By cartItems = By.xpath("//table[@id='cart_info_table']//tbody/tr");
 	By greenShirtDescription = By.xpath("//a[text()='Green Side Placket Detail T-Shirt']");
 	By poloShirtDescription = By.xpath("//a[text()='Premium Polo T-Shirts']"); 
-	By slimJeansDesciption = By.xpath("//a[text()='Grunt Blue Slim Fit Jeans']");
-
+	By slimJeansDescription = By.xpath("//a[text()='Grunt Blue Slim Fit Jeans']");
+	By removeSlimJeans = By.xpath("//a[@data-product-id=\"37\"]");
+	By removeGraphicShirt = By.xpath("//a[@data-product-id=\"43\"]");
+	By straightJeansDescription = By.xpath("//a[text()='Regular Fit Straight Jeans']");
 	
+	
+
 	
 	public ProductsPage(WebDriver driver) {
 		this.driver = driver;
@@ -186,10 +190,28 @@ public class ProductsPage {
 	}
 	
 	public boolean slimJeansDisplayed() {
-		return driver.findElement(slimJeansDesciption).isDisplayed();
+		return driver.findElement(slimJeansDescription).isDisplayed();
 		}
 	
-			
+	public void removeSlimJeans() {
+		driver.findElement(removeSlimJeans).click();
+		
+	}
+	
+	public void removeGraphicTshirt() {
+		
+		driver.findElement(removeGraphicShirt).click();
+	}
+	
+	public boolean straightJeansDisplayed() {
+		return driver.findElement(straightJeansDescription).isDisplayed();
+	}
+	
+	public void waitForCartToUpdate() {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    wait.until(ExpectedConditions.numberOfElementsToBe(cartItems, 3));
+	}
+			 
 } 
 			
 
