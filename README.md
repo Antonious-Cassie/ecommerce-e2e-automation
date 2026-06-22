@@ -25,5 +25,15 @@ This framework highlights an automated user experience on a E-Commerce website u
 * 6 Remove items from multiple cart
 * 7 Checkout Cart Flow   
 
+## Framework Features Include: 
+
+* Page Object Model (POM)
+* TestNG BeforeMethod, Test and AfterMethod
+* TestNG Assertions
+* Reusable Page Classes
+* Maven Dependency Management
+* End-to-End Test Coverage
+* Git Version Control
+
 Created By 
 Antonious Cassie
