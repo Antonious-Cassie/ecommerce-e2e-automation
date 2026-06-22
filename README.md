@@ -17,10 +17,13 @@ This framework highlights an automated user experience on a E-Commerce website u
 
 ## Implemented Test Cases are as follows: 
 
-* Positive Login Test
-* Negative Login Test
-* Add Product to Cart
-* Remove Product from Cart
+* 1. Positive Login Test
+* 2. Negative Login Test
+* 3. Add Product to Cart
+* 4. Remove Product from Cart
+* 5. Add Multiple Items in Cart
+* 6. Remove items from multiple cart
+* 7. Checkout Cart Flow   
 
 Created By 
 Antonious Cassie
