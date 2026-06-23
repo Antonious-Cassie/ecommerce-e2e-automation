@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class ProductsPage {
 
@@ -19,7 +20,9 @@ public class ProductsPage {
 	
 	By productPage = By.xpath("//a[@href='/products']");
 	By iframe1 = By.id("aswift_3");
+	
 	By closeFrameBtn = By.xpath("//*[text()='Close']");
+	
 	By menClothing = By.xpath("//a[@href='#Men']");
 	By jeans = By.xpath("//a[@href='/category_products/6']");
 	By jeansAddToCart = By.xpath("//div[@class='productinfo text-center']//a[@data-product-id='33']");
@@ -40,6 +43,8 @@ public class ProductsPage {
 	By removeSlimJeans = By.xpath("//a[@data-product-id=\"37\"]");
 	By removeGraphicShirt = By.xpath("//a[@data-product-id=\"43\"]");
 	By straightJeansDescription = By.xpath("//a[text()='Regular Fit Straight Jeans']");
+	By logoutBtn = By.xpath("//a[@href='/logout']");
+	By loginAccountLocator = By.xpath("//a[@href='/login']");
 	
 	
 
@@ -56,11 +61,18 @@ public class ProductsPage {
 	
 	}
 	
+
 	public void closeAdPopup() {
 
-		driver.switchTo().frame(driver.findElement(iframe1)); 
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframe1));
+		
+		//driver.switchTo().frame(driver.findElement(iframe1));
 		
 		wait.until(ExpectedConditions.elementToBeClickable(closeFrameBtn)).click();
+		
+		System.out.println(
+			    driver.findElements(By.cssSelector("iframe[id^='aswift']")).size()
+			);
 		
 		//driver.findElement(closeFrameBtn).click();
 		
@@ -211,6 +223,20 @@ public class ProductsPage {
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	    wait.until(ExpectedConditions.numberOfElementsToBe(cartItems, 3));
 	}
+	
+	public void logout() {
+		driver.findElement(logoutBtn).click();
+	}
+	
+	
+	public boolean loginBtnDisplayed() {
+		return driver.findElement(loginAccountLocator).isDisplayed();
+	}
+	
+	public boolean loginURLDisplayed() {
+		return driver.getCurrentUrl().equals("https://automationexercise.com/login");
+	}
+	
 			 
 } 
 			
