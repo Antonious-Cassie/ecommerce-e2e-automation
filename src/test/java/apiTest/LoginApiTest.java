@@ -73,6 +73,36 @@ public void verifyLoginWithoutEmail() {
 }
 
 
+@Test
+public void verifyLoginWithoutPassword() {
+	
+	given()
+	
+	.formParam("email", "cass901a@gmail.com")
+	
+	.when()
+	.post("/api/verifyLogin")
+	
+	.then()
+	.statusCode(200)
+	.body(containsString("\"responseCode\": 400"))
+    .body(containsString("\"message\": \"Bad request, email or password parameter is missing in POST request.\""));
+}
+
+@Test
+public void verifyLoginWithoutEmailAndPassword() {
+	
+	given()
+	
+	.when()
+	.post("/api/verifyLogin")
+	
+	.then()
+	.statusCode(200)
+	.body(containsString("\"responseCode\": 400"))
+    .body(containsString("\"message\": \"Bad request, email or password parameter is missing in POST request.\""));
+}
+
 
 
 	
