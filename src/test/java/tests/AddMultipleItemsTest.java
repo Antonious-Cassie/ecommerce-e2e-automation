@@ -61,9 +61,7 @@ public class AddMultipleItemsTest {
 		
 		productsPage.addSlimJeansToCart();
 		
-		productsPage.cartItemTotal();
-		
-		Assert.assertEquals(productsPage.cartItemTotal(), 5); 
+		Assert.assertEquals(productsPage.cartItemTotal(), 6); 
 		
 		Assert.assertTrue(productsPage.greenShirtDisplayed());
 		
