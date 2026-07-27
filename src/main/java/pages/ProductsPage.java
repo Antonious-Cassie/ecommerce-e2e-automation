@@ -63,22 +63,15 @@ public class ProductsPage {
 	
 
 	public void closeAdPopup() {
-
-		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframe1));
-		
-		//driver.switchTo().frame(driver.findElement(iframe1));
-		
-		wait.until(ExpectedConditions.elementToBeClickable(closeFrameBtn)).click();
-		
-		System.out.println(
-			    driver.findElements(By.cssSelector("iframe[id^='aswift']")).size()
-			);
-		
-		//driver.findElement(closeFrameBtn).click();
-		
-		driver.switchTo().defaultContent();
-		
-	} 
+	    try {
+	        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframe1));
+	        wait.until(ExpectedConditions.elementToBeClickable(closeFrameBtn)).click();
+	    } catch (Exception e) {
+	        System.out.println("Advert not present — continuing.");
+	    } finally {
+	        driver.switchTo().defaultContent();
+	    }
+	}
 	
 	public void selectJeans() {
 		driver.findElement(menClothing).click();
