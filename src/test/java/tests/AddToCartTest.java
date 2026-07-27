@@ -1,6 +1,7 @@
 package tests;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -30,7 +31,15 @@ public class AddToCartTest {
 	
 	@BeforeMethod 
 	public void before() {
-		driver = new ChromeDriver();
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless=new");
+		options.addArguments("--no-sandbox");
+		options.addArguments("--disable-dev-shm-usage");
+		options.addArguments("--window-size=1920,1080");
+
+		driver = new ChromeDriver(options);
+		
 		driver.get("https://automationexercise.com/");
 		driver.manage().window().maximize();
 		
