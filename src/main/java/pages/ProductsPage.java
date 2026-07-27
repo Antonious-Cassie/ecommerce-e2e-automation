@@ -1,6 +1,7 @@
 package pages;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -84,7 +85,7 @@ public class ProductsPage {
 		
 		Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartMsg)).isDisplayed());
 		
-		driver.findElement(viewCart).click();
+		wait.until(ExpectedConditions.elementToBeClickable(viewCart)).click();
 		
 	}
 	
@@ -179,9 +180,7 @@ public class ProductsPage {
 	}
 	
 	public int cartItemTotal() {
-		
 		return driver.findElements(cartItems).size();
-		
 	}
 	
 	public boolean greenShirtDisplayed() {
