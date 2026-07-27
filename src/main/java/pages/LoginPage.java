@@ -24,7 +24,9 @@ public class LoginPage {
 	}
 	
 	public void clickConsent() {
-		driver.findElement(consentBtn).click();
+	    if (!driver.findElements(consentBtn).isEmpty()) {
+	        driver.findElement(consentBtn).click();
+	    }
 	}
 	
 	public void loginAccount() {
