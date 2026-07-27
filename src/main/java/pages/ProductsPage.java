@@ -56,9 +56,7 @@ public class ProductsPage {
 	}
 	
 	public void openProductPage() {
-		driver.findElement(productPage).click();
-		
-	
+	    wait.until(ExpectedConditions.elementToBeClickable(productPage)).click();
 	}
 	
 
