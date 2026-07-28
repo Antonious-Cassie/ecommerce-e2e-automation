@@ -154,6 +154,7 @@ public class ProductsPage {
 		wait.until(ExpectedConditions.elementToBeClickable(ContinueBtn)).click();
 	}
 	
+	
 	public void addGraphicShirt() {
 		
 		driver.findElement(GraphicShirt).click();
@@ -162,16 +163,19 @@ public class ProductsPage {
 		
 	} 
 	
+	
 	public void selectJeansCategory() {
 		
 		act.scrollByAmount(0, -500).perform();
 		
-		driver.findElement(menClothing).click();
+		WebElement men = wait.until(ExpectedConditions.elementToBeClickable(menClothing));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", men);
 		
 		wait.until(ExpectedConditions.elementToBeClickable(jeans)).click();
 		
 		
 	}
+	
 	
 	public void addStraightJeansToCart() {
 		
@@ -183,6 +187,7 @@ public class ProductsPage {
 		
 	}
 	
+	
 	public void addSlimJeansToCart() {
 		
 		driver.findElement(slimJeans).click();
@@ -190,21 +195,26 @@ public class ProductsPage {
 		wait.until(ExpectedConditions.elementToBeClickable(viewCart)).click();
 	}
 	
+	
 	public int cartItemTotal() {
 		return driver.findElements(cartItems).size();
 	}
+	
 	
 	public boolean greenShirtDisplayed() {
 		return driver.findElement(greenShirtDescription).isDisplayed();
 	}
 	
+	
 	public boolean poloShirtDisplayed() {
 		return driver.findElement(poloShirtDescription).isDisplayed();
 	}
 	
+	
 	public boolean slimJeansDisplayed() {
 		return driver.findElement(slimJeansDescription).isDisplayed();
 		}
+	
 	
 	public void removeSlimJeans() {
 		driver.findElement(removeSlimJeans).click();
@@ -216,14 +226,17 @@ public class ProductsPage {
 		driver.findElement(removeGraphicShirt).click();
 	}
 	
+	
 	public boolean straightJeansDisplayed() {
 		return driver.findElement(straightJeansDescription).isDisplayed();
 	}
+	
 	
 	public void waitForCartToUpdate() {
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	    wait.until(ExpectedConditions.numberOfElementsToBe(cartItems, 3));
 	}
+	
 	
 	public void logout() {
 		driver.findElement(logoutBtn).click();
@@ -233,6 +246,7 @@ public class ProductsPage {
 	public boolean loginBtnDisplayed() {
 		return driver.findElement(loginAccountLocator).isDisplayed();
 	}
+	
 	
 	public boolean loginURLDisplayed() {
 		return driver.getCurrentUrl().equals("https://automationexercise.com/login");
