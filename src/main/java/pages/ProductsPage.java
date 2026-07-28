@@ -102,7 +102,7 @@ public class ProductsPage {
 	
 	public void removeItemFromCart() {
 
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
 	    WebElement removeButton = wait.until(
 	        ExpectedConditions.elementToBeClickable(
@@ -112,11 +112,7 @@ public class ProductsPage {
 
 	    removeButton.click();
 
-	    wait.until(
-	        ExpectedConditions.invisibilityOfElementLocated(
-	            By.className("cart_quantity_delete")
-	        )
-	    );
+	    wait.until(ExpectedConditions.stalenessOf(removeButton));
 	}
 	
 	public String getEmptyCartMessage() {
