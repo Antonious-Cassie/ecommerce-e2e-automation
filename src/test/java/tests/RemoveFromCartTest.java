@@ -58,6 +58,8 @@ public void removeItem() {
 	
 	String cartMessage = productsPage.getEmptyCartMessage(); 
 	
+	System.out.println("CART MESSAGE: " + cartMessage);
+	
 	Assert.assertTrue(cartMessage.contains("Cart is empty!")); 
 	
 

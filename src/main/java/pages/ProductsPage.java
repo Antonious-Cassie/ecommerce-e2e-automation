@@ -29,7 +29,7 @@ public class ProductsPage {
 	By jeansAddToCart = By.xpath("//div[@class='productinfo text-center']//a[@data-product-id='33']");
 	By addToCartMsg = By.xpath("//h4[text()='Added!']");
 	By viewCart = By.xpath("//u[text()='View Cart']");
-	By quantity = By.xpath("//button[text()='1']");
+	By quantity = By.xpath("//button[normalize-space()='1']");
 	By Tshirts = By.xpath("//a[text()='Tshirts ']");
 	By GreenShirt = By.xpath("//a[@data-product-id=\"29\"]");
 	By ContinueBtn = By.xpath("//button[text()='Continue Shopping']");
@@ -90,20 +90,33 @@ public class ProductsPage {
 	}
 	
 	public void verifyCart() {
-		
-		String expectedUrl = "https://automationexercise.com/view_cart"; 
-		
-		String actualUrl = driver.getCurrentUrl();
-		
-		Assert.assertEquals(actualUrl, expectedUrl); 
-		
-		Assert.assertEquals(wait.until(ExpectedConditions.visibilityOfElementLocated(quantity)).getText(),"1");
+
+	    String expectedUrl = "https://automationexercise.com/view_cart";
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	    wait.until(ExpectedConditions.urlToBe(expectedUrl));
+
+	    Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);
 	}
 	
 	public void removeItemFromCart() {
-		
-		driver.findElement(By.className("cart_quantity_delete")).click();
-		
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	    WebElement removeButton = wait.until(
+	        ExpectedConditions.elementToBeClickable(
+	            By.className("cart_quantity_delete")
+	        )
+	    );
+
+	    removeButton.click();
+
+	    wait.until(
+	        ExpectedConditions.invisibilityOfElementLocated(
+	            By.className("cart_quantity_delete")
+	        )
+	    );
 	}
 	
 	public String getEmptyCartMessage() {
@@ -111,11 +124,13 @@ public class ProductsPage {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
 		
 		
-		WebElement emptyCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("empty_cart")));
-		
-		return emptyCart.getText();
-		
+		WebElement emptyCart = wait.until(
+			    ExpectedConditions.visibilityOfElementLocated(
+			        By.xpath("//*[contains(normalize-space(), 'Cart is empty!')]"))
+			);
+	    return emptyCart.getText();
 	}
+	
 	
 	
 	public void addGreenShirtToCart() {

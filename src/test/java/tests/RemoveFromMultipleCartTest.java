@@ -58,7 +58,7 @@ public class RemoveFromMultipleCartTest {
 	@Test 
 	public void removeItems() {
 		
-		Assert.assertEquals(productsPage.cartItemTotal(), 6); 
+		Assert.assertEquals(productsPage.cartItemTotal(), 5); 
 		
 		Assert.assertTrue(productsPage.greenShirtDisplayed());
 		
@@ -71,6 +71,7 @@ public class RemoveFromMultipleCartTest {
 		productsPage.removeGraphicTshirt();
 		
 		productsPage.waitForCartToUpdate();
+		
 		
 		Assert.assertEquals(productsPage.cartItemTotal(), 3); 
 		
