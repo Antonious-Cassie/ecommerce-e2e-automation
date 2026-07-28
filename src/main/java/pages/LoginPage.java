@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.TimeoutException;
 
 public class LoginPage {
 	
@@ -24,8 +25,24 @@ public class LoginPage {
 	}
 	
 	public void clickConsent() {
-	    if (!driver.findElements(consentBtn).isEmpty()) {
-	        driver.findElement(consentBtn).click();
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+	    try {
+	        WebElement consentButton = wait.until(
+	            ExpectedConditions.elementToBeClickable(consentBtn)
+	        );
+
+	        consentButton.click();
+
+	        wait.until(
+	            ExpectedConditions.invisibilityOfElementLocated(
+	                By.className("fc-dialog-overlay")
+	            )
+	        );
+
+	    } catch (TimeoutException e) {
+	        
 	    }
 	}
 	
